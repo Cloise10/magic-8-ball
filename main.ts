@@ -1,29 +1,46 @@
+// on shake, a random number between 0 and 2 are picked
+// 
+// if 2 is picked, answer is yes w/ a check mark to show
+// 
+// if 1 is picked, answer is no w/ an x mark to show
+// 
+// if neither 1 nor 2 are picked, answer is maybe with question mark to show
 input.onGesture(Gesture.Shake, function () {
-    // sets number to randomly pick 0 to 2
     number = randint(0, 2)
     if (number == 2) {
-        // if number is 2, the answer is YES
         basic.showString("YES")
-        // Check mark represents YES
-        basic.showIcon(IconNames.Yes)
+        basic.showIcon(IconNames.Happy)
         basic.pause(500)
         basic.clearScreen()
     } else if (number == 1) {
-        // if number is 1, the answer is NO
         basic.showString("NO")
-        // cross represents NO
-        basic.showIcon(IconNames.No)
+        basic.showIcon(IconNames.Sad)
         basic.pause(500)
         basic.clearScreen()
     } else {
-        // if number is neither 1 nor 2, answer is MAYBE
         basic.showString("MAYBE")
-        // poker face (?) represents MAYBE
-        basic.showIcon(IconNames.Asleep)
+        basic.showLeds(`
+            . . # # .
+            . # . . #
+            . . . # .
+            . . . . .
+            . . . # .
+            `)
         basic.pause(500)
         basic.clearScreen()
     }
 })
-// The start of the Magic 8 Ball
+// on start, shows 8 to identify the game "Magic 8 Ball" and shows string "Ask a Question" as instruction the the user
 let number = 0
+basic.showLeds(`
+    # # # # #
+    # . . . #
+    . # # # .
+    # . . . #
+    # # # # #
+    `)
+basic.pause(200)
+basic.clearScreen()
 basic.showString("Ask a Question")
+basic.pause(200)
+basic.clearScreen()
